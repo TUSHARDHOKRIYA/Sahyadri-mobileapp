@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_admin_dashboard"
+        android:icon="@android:drawable/ic_menu_today"
+        android:title="Dashboard" />
+    <item
+        android:id="@+id/navigation_admin_families"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="Families" />
+    <item
+        android:id="@+id/navigation_admin_medicals"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="Medicals" />
+    <item
+        android:id="@+id/navigation_admin_reports"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="Reports" />
+    <item
+        android:id="@+id/navigation_admin_settings"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="Settings" />
+</menu>

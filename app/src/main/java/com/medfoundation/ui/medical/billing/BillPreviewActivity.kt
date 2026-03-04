@@ -21,6 +21,7 @@ class BillPreviewActivity : AppCompatActivity() {
 
         val memberName = intent.getStringExtra("MEMBER_NAME") ?: "Unknown"
         val totalAmount = intent.getDoubleExtra("TOTAL_AMOUNT", 0.0)
+        val cardId = intent.getStringExtra("CARD_ID") ?: "MEDF-2025-00142"
         val summary = BillCalculator.calculateBill(totalAmount)
 
         val sdf = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
@@ -44,6 +45,7 @@ class BillPreviewActivity : AppCompatActivity() {
                 Transaction(
                     billNo = billNo,
                     patientName = memberName,
+                    cardId = cardId,
                     medicalShopName = "MedPlus Pharmacy",
                     date = currentDate,
                     totalAmount = totalAmount

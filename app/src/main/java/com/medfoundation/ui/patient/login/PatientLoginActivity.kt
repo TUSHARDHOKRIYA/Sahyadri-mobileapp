@@ -19,6 +19,11 @@ class PatientLoginActivity : AppCompatActivity() {
         binding = ActivityPatientLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Add back button listener if not present in the source
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
+
         binding.sendOtpButton.setOnClickListener {
             val mobile = binding.mobileEditText.text.toString()
             if (mobile.length == 10) {

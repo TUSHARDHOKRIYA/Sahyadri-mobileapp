@@ -11,40 +11,66 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Profile"
+            android:textColor="@color/primary"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp">
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="16dp"
+            app:strokeWidth="0dp"
+            app:cardElevation="4dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="24dp">
-                <ImageView
+
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@android:drawable/ic_menu_myplaces"
-                    app:tint="@color/primary" />
+                    app:cardCornerRadius="40dp"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/primary">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@android:drawable/ic_menu_myplaces"
+                        android:padding="16dp"
+                        app:tint="@color/primary" />
+                </com.google.android.material.card.MaterialCardView>
+
                 <TextView
-                    android:id="@+id/headName"
+                    android:id="@+id/headNameProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Rajesh Sharma"
                     android:textSize="20sp"
                     android:textStyle="bold" />
+
                 <TextView
-                    android:id="@+id/contactNo"
+                    android:id="@+id/cardIdProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="+91 9876543210" />
-                <TextView
-                    android:id="@+id/address"
+                    android:text="MEDF-2025-00142"
+                    android:alpha="0.6" />
+
+                <Button
+                    android:id="@+id/btnEditProfile"
+                    style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12, Shivaji Nagar, Pune"
-                    android:textAlignment="center" />
+                    android:layout_marginTop="8dp"
+                    android:text="Edit Family Details"
+                    app:icon="@android:drawable/ic_menu_edit" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -58,58 +84,55 @@
             android:textStyle="bold" />
 
         <LinearLayout
-            android:id="@+id/membersContainer"
+            android:id="@+id/membersContainerProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Settings"
-            android:textColor="@color/on_background"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:layout_marginTop="8dp" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:cardCornerRadius="12dp">
+            android:layout_marginTop="24dp"
+            app:cardCornerRadius="16dp"
+            app:strokeWidth="0dp"
+            app:cardElevation="2dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <com.google.android.material.button.MaterialButton
                     style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Language: English"
-                    android:textAlignment="viewStart" />
+                    android:layout_height="64dp"
+                    android:text="Notification Settings"
+                    android:textAlignment="viewStart"
+                    android:paddingStart="24dp"
+                    app:icon="@android:drawable/ic_popup_reminder" />
+
                 <com.google.android.material.button.MaterialButton
                     style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Notifications"
-                    android:textAlignment="viewStart" />
+                    android:layout_height="64dp"
+                    android:text="Help &amp; Support"
+                    android:textAlignment="viewStart"
+                    android:paddingStart="24dp"
+                    app:icon="@android:drawable/ic_menu_help" />
+
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLogout"
                     style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Support &amp; Help"
-                    android:textAlignment="viewStart" />
+                    android:layout_height="64dp"
+                    android:text="Logout"
+                    android:textColor="@color/error"
+                    android:textAlignment="viewStart"
+                    android:paddingStart="24dp"
+                    app:icon="@android:drawable/ic_lock_power_off"
+                    app:iconTint="@color/error" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
-
-        <Button
-            android:id="@+id/logoutButton"
-            style="@style/Widget.Material3.Button.TonalButton"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="24dp"
-            android:text="Logout"
-            android:textColor="@color/error" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

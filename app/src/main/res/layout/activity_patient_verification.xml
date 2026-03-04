@@ -14,9 +14,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/secondary"
             app:title="Verify Patient"
-            app:titleTextColor="@color/on_primary" />
+            app:titleTextColor="@color/on_secondary" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -30,30 +30,33 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <!-- Card 1: Blue Theme -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/primary"
-                app:cardCornerRadius="12dp">
+                app:cardCornerRadius="16dp"
+                app:strokeWidth="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="20dp">
                     <TextView
                         android:id="@+id/cardIdText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="MEDF-2025-00142"
                         android:textColor="@color/on_primary"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                     <TextView
                         android:id="@+id/validityText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Status: ✅ ACTIVE | FY 2025-26"
-                        android:textColor="@color/on_primary" />
+                        android:textColor="@color/on_primary"
+                        android:alpha="0.9" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -62,47 +65,52 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:tabMode="scrollable" />
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="@color/secondary"
+                app:tabIndicatorColor="@color/secondary" />
 
+            <!-- Card 2: White/Green Theme -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:cardCornerRadius="12dp">
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/surface"
+                app:cardCornerRadius="16dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/secondary">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="20dp">
                     <TextView
                         android:id="@+id/memberNameText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rajesh Sharma"
-                        android:textSize="18sp"
+                        android:textSize="22sp"
+                        android:textColor="@color/secondary"
                         android:textStyle="bold" />
                     <TextView
                         android:id="@+id/memberDetailText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="45 | Male | Self" />
+                        android:text="45 | Male | Self"
+                        android:alpha="0.7" />
                     <TextView
                         android:id="@+id/memberAadhaarText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Aadhaar: XXXX-XXXX-3210" />
+                        android:text="Aadhaar: XXXX-XXXX-3210"
+                        android:textSize="12sp"
+                        android:alpha="0.5" />
 
                     <com.google.android.material.chip.ChipGroup
                         android:id="@+id/healthChips"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp">
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/bloodGroupChip"
-                            style="@style/Widget.Material3.Chip.Assist"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="A+" />
+                        android:layout_marginTop="12dp">
+                        <!-- Chips will be added dynamically -->
                     </com.google.android.material.chip.ChipGroup>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -111,23 +119,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Purchase History"
-                android:textStyle="bold" />
+                android:text="Recent Purchases"
+                android:textColor="@color/secondary"
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
-            <LinearLayout
+            <!-- Card 3: Soft Green/White -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Total visits: 5 | Total spent: ₹5,200" android:textSize="12sp"/>
-            </LinearLayout>
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="#F1F8E9"
+                app:cardCornerRadius="12dp"
+                app:strokeWidth="0dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total visits: 5 | Total spent: ₹5,200"
+                        android:textColor="@color/secondary"
+                        android:textStyle="bold"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout
                 android:id="@+id/historyList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="12dp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -137,8 +161,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
+        android:layout_margin="24dp"
         android:text="CREATE BILL"
+        android:textColor="@color/on_secondary"
+        app:backgroundTint="@color/secondary"
+        app:iconTint="@color/on_secondary"
         app:icon="@android:drawable/ic_input_add" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

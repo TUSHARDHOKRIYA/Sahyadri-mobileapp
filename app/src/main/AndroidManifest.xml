@@ -43,6 +43,7 @@
         <activity android:name=".ui.medical.verification.PatientVerificationActivity" />
         <activity android:name=".ui.medical.billing.CreateBillActivity" />
         <activity android:name=".ui.medical.billing.BillPreviewActivity" />
+        <activity android:name=".ui.medical.history.MedicalHistoryFullActivity" />
 
         <!-- Admin Portal -->
         <activity android:name=".ui.admin.login.AdminLoginActivity" />

@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.card.MaterialCardView
 import com.medfoundation.R
@@ -30,36 +32,42 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupHeadInfo()
-        setupMembers()
+        
+        setupProfileInfo()
+        setupMembersList()
 
-        binding.logoutButton.setOnClickListener {
+        binding.btnLogout.setOnClickListener {
             startActivity(Intent(requireContext(), RoleSelectionActivity::class.java))
             requireActivity().finish()
         }
+
+        binding.btnEditProfile.setOnClickListener {
+            Toast.makeText(context, "Edit Family Details mode activated", Toast.LENGTH_SHORT).show()
+        }
     }
 
-    private fun setupHeadInfo() {
+    private fun setupProfileInfo() {
         val family = DummyData.dummyFamily
-        binding.headName.text = family.headName
-        binding.contactNo.text = "+91 ${family.contactNo}"
-        binding.address.text = family.address
+        binding.headNameProfile.text = family.headName
+        binding.cardIdProfile.text = "Smart Card ID: ${family.smartCardId}"
     }
 
-    private fun setupMembers() {
+    private fun setupMembersList() {
         val members = DummyData.dummyMembers
-        binding.membersContainer.removeAllViews()
+        binding.membersContainerProfile.removeAllViews()
+        
         for (member in members) {
-            val view = LayoutInflater.from(requireContext()).inflate(R.layout.item_member, binding.membersContainer, false) as MaterialCardView
+            val view = LayoutInflater.from(requireContext()).inflate(R.layout.item_member, binding.membersContainerProfile, false) as MaterialCardView
             view.findViewById<TextView>(R.id.memberName).text = member.name
-            view.findViewById<TextView>(R.id.memberRelation).text = "${member.relationship} | ${member.age} | ${member.gender}"
+            view.findViewById<TextView>(R.id.memberRelation).text = "${member.relationship} | ${member.age} yrs | ${member.gender}"
             
             val infoContainer = view.findViewById<View>(R.id.healthInfoContainer)
             val expandIcon = view.findViewById<ImageView>(R.id.expandIcon)
             
+            // Note: Chronic conditions are hidden as per privacy requirement, showing basic info
             view.findViewById<TextView>(R.id.bloodGroup).text = "Blood Group: ${member.bloodGroup}"
-            view.findViewById<TextView>(R.id.chronicConditions).text = "Chronic Conditions: ${member.chronicConditions}"
-            view.findViewById<TextView>(R.id.allergies).text = "Allergies: ${member.allergies}"
+            view.findViewById<TextView>(R.id.chronicConditions).visibility = View.GONE
+            view.findViewById<TextView>(R.id.allergies).text = "Aadhaar: XXXX-XXXX-3210"
 
             view.setOnClickListener {
                 if (infoContainer.visibility == View.VISIBLE) {
@@ -67,10 +75,11 @@ class ProfileFragment : Fragment() {
                     expandIcon.setImageResource(android.R.drawable.arrow_down_float)
                 } else {
                     infoContainer.visibility = View.VISIBLE
+                    infoContainer.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in))
                     expandIcon.setImageResource(android.R.drawable.arrow_up_float)
                 }
             }
-            binding.membersContainer.addView(view)
+            binding.membersContainerProfile.addView(view)
         }
     }
 

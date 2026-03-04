@@ -3,9 +3,7 @@ package com.medfoundation.ui.patient.history
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.medfoundation.R
 import com.medfoundation.databinding.ItemTransactionBinding
 import com.medfoundation.model.Transaction
 
@@ -25,6 +23,7 @@ class HistoryAdapter(private val transactions: List<Transaction>) :
         holder.binding.date.text = transaction.date
         holder.binding.amount.text = "₹${transaction.paidAmount}"
         holder.binding.patientName.text = "For: ${transaction.patientName}"
+        holder.binding.cardIdText.text = "Card ID: ${transaction.cardId}"
 
         // Set detailed amounts
         holder.binding.totalAmountDetail.text = "₹${String.format("%.2f", transaction.totalAmount)}"

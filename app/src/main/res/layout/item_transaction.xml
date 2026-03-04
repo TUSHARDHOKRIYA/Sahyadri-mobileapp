@@ -63,6 +63,16 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/cardIdText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Card ID: MEDF-2025-00142"
+            android:textColor="@color/secondary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
         <LinearLayout
             android:id="@+id/detailContainer"
             android:layout_width="match_parent"

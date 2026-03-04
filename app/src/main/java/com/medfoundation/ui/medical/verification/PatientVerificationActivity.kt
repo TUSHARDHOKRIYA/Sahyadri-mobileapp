@@ -24,12 +24,16 @@ class PatientVerificationActivity : AppCompatActivity() {
         binding = ActivityPatientVerificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val cardId = intent.getStringExtra("CARD_ID") ?: "MEDF-2025-00142"
+        binding.cardIdText.text = cardId
+
         setupTabs()
         setupHistory()
 
         binding.createBillFab.setOnClickListener {
             val intent = Intent(this, CreateBillActivity::class.java)
             intent.putExtra("MEMBER_NAME", selectedMember?.name ?: DummyData.dummyMembers[0].name)
+            intent.putExtra("CARD_ID", cardId)
             startActivity(intent)
         }
     }
@@ -60,7 +64,6 @@ class PatientVerificationActivity : AppCompatActivity() {
         
         binding.healthChips.removeAllViews()
         addChip(member.bloodGroup)
-        member.chronicConditions.split(",").forEach { addChip(it.trim()) }
     }
 
     private fun addChip(text: String) {
@@ -79,6 +82,7 @@ class PatientVerificationActivity : AppCompatActivity() {
             card.findViewById<TextView>(R.id.date).text = transaction.date
             card.findViewById<TextView>(R.id.amount).text = "₹${transaction.paidAmount}"
             card.findViewById<TextView>(R.id.patientName).text = "For: ${transaction.patientName}"
+            card.findViewById<TextView>(R.id.cardIdText).text = "Card ID: ${transaction.cardId}"
             binding.historyList.addView(card)
         }
     }

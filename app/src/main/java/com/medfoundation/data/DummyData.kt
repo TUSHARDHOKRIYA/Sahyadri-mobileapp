@@ -14,7 +14,7 @@ object DummyData {
         cardStatus = "ACTIVE"
     )
 
-    val dummyMembers = listOf(
+    val dummyMembers = mutableListOf(
         Member("Rajesh Sharma", "Self", 45, "Male", "A+", "Diabetes"),
         Member("Sunita Sharma", "Spouse", 41, "Female", "B+", "Thyroid"),
         Member("Aman Sharma", "Child", 18, "Male", "O+", "None"),
@@ -22,11 +22,11 @@ object DummyData {
     )
 
     val dummyTransactions = mutableListOf(
-        Transaction("BILL-001", "Rajesh Sharma", "MedPlus Pharmacy", "12 Jan 2025", 1200.0),
-        Transaction("BILL-002", "Sunita Sharma", "Apollo Pharmacy", "28 Jan 2025", 850.0),
-        Transaction("BILL-003", "Kamla Sharma", "MedPlus Pharmacy", "05 Feb 2025", 2100.0),
-        Transaction("BILL-004", "Rajesh Sharma", "Jan Aushadhi Store", "14 Feb 2025", 600.0),
-        Transaction("BILL-005", "Aman Sharma", "Apollo Pharmacy", "01 Mar 2025", 450.0)
+        Transaction("BILL-001", "Rajesh Sharma", "MEDF-2025-00142", "MedPlus Pharmacy", "12 Jan 2025", 1200.0, "Medicine", 25),
+        Transaction("BILL-002", "Sunita Sharma", "MEDF-2025-00142", "Apollo Pharmacy", "28 Jan 2025", 850.0, "Medicine", 25),
+        Transaction("BILL-003", "Kamla Sharma", "MEDF-2025-00142", "Sahyadri Hospital", "05 Feb 2025", 15000.0, "IPD", 20),
+        Transaction("BILL-004", "Rajesh Sharma", "MEDF-2025-00142", "Jan Aushadhi Store", "14 Feb 2025", 600.0, "Medicine", 25),
+        Transaction("BILL-005", "Aman Sharma", "MEDF-2025-00142", "PathLab Pro", "01 Mar 2025", 4500.0, "Full Body Checkup", 51) // Flat price logic simulated by %
     )
 
     val dummyMedicals = listOf(

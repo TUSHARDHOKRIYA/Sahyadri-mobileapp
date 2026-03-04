@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:label="MedFoundation"
+        android:roundIcon="@drawable/ic_launcher_foreground"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MedFoundation"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MedFoundation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.roleselection.RoleSelectionActivity" />
+
+        <!-- Patient Portal -->
+        <activity android:name=".ui.patient.login.PatientLoginActivity" />
+        <activity android:name=".ui.patient.registration.FamilyRegistrationActivity" />
+        <activity android:name=".ui.patient.dashboard.PatientDashboardActivity" />
+
+        <!-- Medical Portal -->
+        <activity android:name=".ui.medical.login.MedicalLoginActivity" />
+        <activity android:name=".ui.medical.dashboard.MedicalDashboardActivity" />
+        <activity android:name=".ui.medical.verification.PatientVerificationActivity" />
+        <activity android:name=".ui.medical.billing.CreateBillActivity" />
+        <activity android:name=".ui.medical.billing.BillPreviewActivity" />
+
+        <!-- Admin Portal -->
+        <activity android:name=".ui.admin.login.AdminLoginActivity" />
+        <activity android:name=".ui.admin.dashboard.AdminDashboardActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_GOOGLE_MAPS_API_KEY" />
+    </application>
+
+</manifest>

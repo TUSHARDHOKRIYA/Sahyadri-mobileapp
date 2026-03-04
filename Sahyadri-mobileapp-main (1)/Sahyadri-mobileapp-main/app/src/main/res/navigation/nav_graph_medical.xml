@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_medical"
+    app:startDestination="@id/navigation_medical_dashboard">
+
+    <fragment
+        android:id="@+id/navigation_medical_dashboard"
+        android:name="com.medfoundation.ui.medical.dashboard.MedicalDashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_medical_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_medical_scan"
+        android:name="com.medfoundation.ui.medical.scanner.ScanFragment"
+        android:label="Scan"
+        tools:layout="@layout/fragment_scan" />
+
+    <fragment
+        android:id="@+id/navigation_medical_history"
+        android:name="com.medfoundation.ui.medical.history.MedicalHistoryFragment"
+        android:label="History"
+        tools:layout="@layout/fragment_medical_history" />
+
+    <fragment
+        android:id="@+id/navigation_medical_profile"
+        android:name="com.medfoundation.ui.medical.profile.MedicalProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_medical_profile" />
+</navigation>

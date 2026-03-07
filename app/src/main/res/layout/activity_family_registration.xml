@@ -1,348 +1,657 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/background"
     tools:context=".ui.patient.registration.FamilyRegistrationActivity">
 
+    <!-- Compact Top Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/primary"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingHorizontal="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="20dp">
 
         <TextView
-            android:id="@+id/registrationTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Family Registration"
-            android:textColor="@color/primary"
-            android:textSize="24sp"
+            android:textColor="@color/on_primary"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
+        <!-- Step indicator bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Step dots -->
+            <TextView
+                android:id="@+id/stepDot1"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/primary"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:background="@color/on_primary" />
+
+            <View android:layout_width="0dp" android:layout_height="2dp"
+                android:layout_weight="1" android:background="#80FFFFFF" android:layout_marginHorizontal="4dp"/>
+
+            <TextView
+                android:id="@+id/stepDot2"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="@color/on_primary"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:background="#80FFFFFF" />
+
+            <View android:layout_width="0dp" android:layout_height="2dp"
+                android:layout_weight="1" android:background="#80FFFFFF" android:layout_marginHorizontal="4dp"/>
+
+            <TextView
+                android:id="@+id/stepDot3"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="@color/on_primary"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:background="#80FFFFFF" />
+
+            <View android:layout_width="0dp" android:layout_height="2dp"
+                android:layout_weight="1" android:background="#80FFFFFF" android:layout_marginHorizontal="4dp"/>
+
+            <TextView
+                android:id="@+id/stepDot4"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:gravity="center"
+                android:text="4"
+                android:textColor="@color/on_primary"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:background="#80FFFFFF" />
+        </LinearLayout>
+
+        <!-- Step title -->
         <TextView
             android:id="@+id/stepTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:text="Step 1: Head of Family"
-            android:textColor="@color/on_background"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textColor="@color/on_primary"
+            android:textSize="13sp"
+            android:alpha="0.85" />
+    </LinearLayout>
 
-        <!-- Step 1: Head of Family -->
+    <!-- Scrollable content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
         <LinearLayout
-            android:id="@+id/step1Container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:orientation="vertical">
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Full Name">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/headNameInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal">
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Age">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/headAgeInput"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number" />
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="12dp"
-                    android:hint="Gender">
-                    <AutoCompleteTextView
-                        android:id="@+id/headGenderDropdown"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none" />
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Aadhaar Number">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/headAadhaarInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Mobile Number">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/headMobileInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="phone" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Blood Group (Optional)">
-                <AutoCompleteTextView
-                    android:id="@+id/headBloodGroupDropdown"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="none" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Address">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/headAddressInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/useCurrentLocationBtn"
-                style="@style/Widget.Material3.Button.TonalButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Use Current Location" />
-
-        </LinearLayout>
-
-        <!-- Step 2: Add Members -->
-        <LinearLayout
-            android:id="@+id/step2Container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:paddingHorizontal="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="16dp">
 
+            <!-- Hidden registration title kept for KV compatibility -->
             <TextView
-                android:id="@+id/memberCountText"
+                android:id="@+id/registrationTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1/4 Members Added (Head included)"
-                android:textStyle="bold" />
+                android:visibility="gone"
+                android:text="Family Registration" />
 
-            <com.google.android.material.card.MaterialCardView
+            <!-- ===== STEP 1: HEAD OF FAMILY ===== -->
+            <LinearLayout
+                android:id="@+id/step1Container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="12dp">
-                <LinearLayout
+                android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Member Name">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/memberNameInput"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="2dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/grey_200">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Personal Details"
+                            android:textColor="@color/primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <View android:layout_width="40dp" android:layout_height="2dp"
+                            android:layout_marginTop="4dp" android:layout_marginBottom="16dp"
+                            android:background="@color/primary" />
+
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="Age">
+                            android:hint="Full Name *"
+                            app:boxCornerRadiusTopStart="10dp"
+                            app:boxCornerRadiusTopEnd="10dp"
+                            app:boxCornerRadiusBottomStart="10dp"
+                            app:boxCornerRadiusBottomEnd="10dp">
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/memberAgeInput"
+                                android:id="@+id/headNameInput"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="number" />
+                                android:inputType="textPersonName" />
                         </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="Age *"
+                                app:boxCornerRadiusTopStart="10dp"
+                                app:boxCornerRadiusTopEnd="10dp"
+                                app:boxCornerRadiusBottomStart="10dp"
+                                app:boxCornerRadiusBottomEnd="10dp">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/headAgeInput"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="number" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="12dp"
+                                android:hint="Gender *"
+                                app:boxCornerRadiusTopStart="10dp"
+                                app:boxCornerRadiusTopEnd="10dp"
+                                app:boxCornerRadiusBottomStart="10dp"
+                                app:boxCornerRadiusBottomEnd="10dp">
+                                <AutoCompleteTextView
+                                    android:id="@+id/headGenderDropdown"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="none" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:hint="Aadhaar Number *"
+                            app:boxCornerRadiusTopStart="10dp"
+                            app:boxCornerRadiusTopEnd="10dp"
+                            app:boxCornerRadiusBottomStart="10dp"
+                            app:boxCornerRadiusBottomEnd="10dp">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/headAadhaarInput"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:maxLength="12" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:hint="Mobile Number *"
+                            app:boxCornerRadiusTopStart="10dp"
+                            app:boxCornerRadiusTopEnd="10dp"
+                            app:boxCornerRadiusBottomStart="10dp"
+                            app:boxCornerRadiusBottomEnd="10dp">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/headMobileInput"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="phone"
+                                android:maxLength="10" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
-                            android:layout_weight="1"
-                            android:hint="Gender">
+                            android:layout_marginTop="12dp"
+                            android:hint="Blood Group (Optional)"
+                            app:boxCornerRadiusTopStart="10dp"
+                            app:boxCornerRadiusTopEnd="10dp"
+                            app:boxCornerRadiusBottomStart="10dp"
+                            app:boxCornerRadiusBottomEnd="10dp">
                             <AutoCompleteTextView
-                                android:id="@+id/genderDropdown"
+                                android:id="@+id/headBloodGroupDropdown"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="none" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                     </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                <!-- Address Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="2dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/grey_200">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:hint="Aadhaar No.">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/memberAadhaarInput"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                        android:orientation="vertical"
+                        android:padding="20dp">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:hint="Relationship with Head">
-                        <AutoCompleteTextView
-                            android:id="@+id/relationDropdown"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:inputType="none" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                            android:text="Address"
+                            android:textColor="@color/primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:hint="Blood Group (Optional)">
-                        <AutoCompleteTextView
-                            android:id="@+id/memberBloodGroupDropdown"
+                        <View android:layout_width="40dp" android:layout_height="2dp"
+                            android:layout_marginTop="4dp" android:layout_marginBottom="16dp"
+                            android:background="@color/primary" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="none" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                            android:hint="Residential Address *"
+                            app:boxCornerRadiusTopStart="10dp"
+                            app:boxCornerRadiusTopEnd="10dp"
+                            app:boxCornerRadiusBottomStart="10dp"
+                            app:boxCornerRadiusBottomEnd="10dp">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/headAddressInput"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:minLines="2"
+                                android:inputType="textMultiLine" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/useCurrentLocationBtn"
+                            style="@style/Widget.Material3.Button.TonalButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp"
+                            android:text="📍  Use Current Location"
+                            android:textSize="13sp"
+                            app:cornerRadius="8dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- ===== STEP 2: ADD MEMBERS ===== -->
+            <LinearLayout
+                android:id="@+id/step2Container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Member count badge -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/card_teal_bg"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="12dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/memberCountText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1/4 Members Added (Head included)"
+                        android:textColor="@color/primary"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Address: Same as Head"
-                        android:textSize="12sp"
-                        android:alpha="0.6" />
+                        android:text="Max 4 including Head"
+                        android:textColor="@color/on_surface_dim"
+                        android:textSize="11sp" />
+                </LinearLayout>
 
-                    <Button
-                        android:id="@+id/addMemberBtn"
-                        style="@style/Widget.Material3.Button.TonalButton"
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="2dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/grey_200">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="Add Member" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Add Family Member"
+                            android:textColor="@color/primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <View android:layout_width="40dp" android:layout_height="2dp"
+                            android:layout_marginTop="4dp" android:layout_marginBottom="16dp"
+                            android:background="@color/primary" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Member Full Name *"
+                            app:boxCornerRadiusTopStart="10dp"
+                            app:boxCornerRadiusTopEnd="10dp"
+                            app:boxCornerRadiusBottomStart="10dp"
+                            app:boxCornerRadiusBottomEnd="10dp">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/memberNameInput"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textPersonName" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="Age *"
+                                app:boxCornerRadiusTopStart="10dp"
+                                app:boxCornerRadiusTopEnd="10dp"
+                                app:boxCornerRadiusBottomStart="10dp"
+                                app:boxCornerRadiusBottomEnd="10dp">
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/memberAgeInput"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="number" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="12dp"
+                                android:hint="Gender *"
+                                app:boxCornerRadiusTopStart="10dp"
+                                app:boxCornerRadiusTopEnd="10dp"
+                                app:boxCornerRadiusBottomStart="10dp"
+                                app:boxCornerRadiusBottomEnd="10dp">
+                                <AutoCompleteTextView
+                                    android:id="@+id/genderDropdown"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="none" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:hint="Aadhaar No. *"
+                            app:boxCornerRadiusTopStart="10dp"
+                            app:boxCornerRadiusTopEnd="10dp"
+                            app:boxCornerRadiusBottomStart="10dp"
+                            app:boxCornerRadiusBottomEnd="10dp">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/memberAadhaarInput"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:maxLength="12" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:hint="Relationship with Head *"
+                            app:boxCornerRadiusTopStart="10dp"
+                            app:boxCornerRadiusTopEnd="10dp"
+                            app:boxCornerRadiusBottomStart="10dp"
+                            app:boxCornerRadiusBottomEnd="10dp">
+                            <AutoCompleteTextView
+                                android:id="@+id/relationDropdown"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:hint="Blood Group (Optional)"
+                            app:boxCornerRadiusTopStart="10dp"
+                            app:boxCornerRadiusTopEnd="10dp"
+                            app:boxCornerRadiusBottomStart="10dp"
+                            app:boxCornerRadiusBottomEnd="10dp">
+                            <AutoCompleteTextView
+                                android:id="@+id/memberBloodGroupDropdown"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="ℹ️  Address will be same as the head of family."
+                            android:textSize="12sp"
+                            android:textColor="@color/on_surface_dim" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/addMemberBtn"
+                            style="@style/Widget.Material3.Button.TonalButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="16dp"
+                            android:text="✚  Add This Member"
+                            android:textSize="14sp"
+                            app:cornerRadius="10dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- ===== STEP 3: REVIEW ===== -->
+            <LinearLayout
+                android:id="@+id/step4Container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="@color/grey_200"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Registration Summary"
+                            android:textColor="@color/primary"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <View android:layout_width="40dp" android:layout_height="2dp"
+                            android:layout_marginTop="4dp" android:layout_marginBottom="16dp"
+                            android:background="@color/primary" />
+
+                        <TextView
+                            android:id="@+id/summaryText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="All data entered will be displayed here for review."
+                            android:textColor="@color/on_surface"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="4dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- ===== STEP 4: PAYMENT ===== -->
+            <LinearLayout
+                android:id="@+id/paymentContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:gravity="center">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="2dp"
+                    app:strokeColor="@color/grey_200"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="32dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="💳"
+                            android:textSize="52sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Membership Fee"
+                            android:textColor="@color/on_background"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="₹ 100 / year"
+                            android:textColor="@color/primary"
+                            android:textSize="28sp"
+                            android:textStyle="bold" />
+
+                        <View android:layout_width="80dp" android:layout_height="1dp"
+                            android:layout_marginVertical="20dp"
+                            android:background="@color/grey_200" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Secure online payment · Razorpay"
+                            android:textColor="@color/on_surface_dim"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
         </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-        <!-- Step 3: Review -->
-        <LinearLayout
-            android:id="@+id/step4Container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:orientation="vertical"
-            android:visibility="gone">
+    <!-- Fixed Bottom Action Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/surface"
+        android:elevation="8dp"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="14dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Summary of Registration"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/summaryText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="All data entered will be displayed here for review." />
-
-        </LinearLayout>
-
-        <!-- Step 4: Payment Gateway (Razorpay Placeholder) -->
-        <LinearLayout
-            android:id="@+id/paymentContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:orientation="vertical"
-            android:visibility="gone"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:src="@android:drawable/ic_menu_save"
-                app:tint="@color/primary" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Payment Gateway"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Total Amount to Pay: ₹100"
-                android:textSize="18sp"
-                android:textColor="@color/secondary"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Razorpay Integration Coming Soon"
-                android:alpha="0.6" />
-
-        </LinearLayout>
-
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/nextButton"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="32dp"
-            android:text="Next" />
-
+            android:layout_height="52dp"
+            android:text="Next"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            android:backgroundTint="@color/primary" />
     </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

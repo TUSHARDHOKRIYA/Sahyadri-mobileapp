@@ -1,29 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.MedFoundation" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
+
+    <!-- Base application theme -->
+    <style name="Theme.MedFoundation" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Primary brand color (teal-blue) -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/on_primary</item>
-        <!-- Secondary brand color. -->
+        <item name="colorPrimaryContainer">@color/primary_light</item>
+        <item name="colorOnPrimaryContainer">@color/primary</item>
+
+        <!-- Secondary brand color (forest green) -->
         <item name="colorSecondary">@color/secondary</item>
         <item name="colorOnSecondary">@color/on_secondary</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">#0D47A1</item>
-        <!-- Customize your light theme here. -->
+        <item name="colorSecondaryContainer">@color/secondary_light</item>
+
+        <!-- Surfaces -->
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnBackground">@color/on_background</item>
+
+        <!-- Error -->
+        <item name="colorError">@color/error</item>
+
+        <!-- Status bar matches primary -->
+        <item name="android:statusBarColor">@color/primary_variant</item>
         <item name="android:windowBackground">@color/background</item>
 
-        <item name="materialButtonStyle">@style/Widget.Material3.Button</item>
-        <item name="materialCardViewStyle">@style/Widget.Material3.CardView.Elevated</item>
+        <!-- Default text appearance -->
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
+    <!-- Card style: clean white with subtle shadow, NO dark elevation overlay -->
     <style name="CardView.MedFoundation" parent="Widget.Material3.CardView.Elevated">
-        <item name="cardCornerRadius">16dp</item>
-        <item name="cardElevation">4dp</item>
-        <item name="strokeWidth">0dp</item>
-        <item name="android:layout_margin">8dp</item>
+        <item name="cardCornerRadius">14dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/grey_200</item>
+        <item name="android:layout_marginBottom">8dp</item>
     </style>
 
+    <!-- Primary button: rounded corners, teal -->
     <style name="Button.MedFoundation" parent="Widget.Material3.Button">
-        <item name="cornerRadius">12dp</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="android:minHeight">50dp</item>
     </style>
+
+    <!-- Bottom nav label visibility -->
+    <style name="BottomNav.MedFoundation" parent="Widget.Material3.BottomNavigationView">
+        <item name="labelVisibilityMode">labeled</item>
+    </style>
+
 </resources>

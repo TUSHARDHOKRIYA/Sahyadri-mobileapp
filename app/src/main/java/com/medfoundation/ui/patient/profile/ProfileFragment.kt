@@ -10,7 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.textfield.TextInputEditText
 import com.medfoundation.R
 import com.medfoundation.data.DummyData
 import com.medfoundation.databinding.FragmentProfileBinding
@@ -32,7 +34,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
         setupProfileInfo()
         setupMembersList()
 
@@ -42,7 +44,11 @@ class ProfileFragment : Fragment() {
         }
 
         binding.btnEditProfile.setOnClickListener {
-            Toast.makeText(context, "Edit Family Details mode activated", Toast.LENGTH_SHORT).show()
+            showEditProfileDialog()
+        }
+
+        binding.btnGlobalEdit.setOnClickListener {
+            showEditProfileDialog()
         }
     }
 
@@ -55,19 +61,20 @@ class ProfileFragment : Fragment() {
     private fun setupMembersList() {
         val members = DummyData.dummyMembers
         binding.membersContainerProfile.removeAllViews()
-        
+
         for (member in members) {
-            val view = LayoutInflater.from(requireContext()).inflate(R.layout.item_member, binding.membersContainerProfile, false) as MaterialCardView
+            val view = LayoutInflater.from(requireContext())
+                .inflate(R.layout.item_member, binding.membersContainerProfile, false) as MaterialCardView
             view.findViewById<TextView>(R.id.memberName).text = member.name
-            view.findViewById<TextView>(R.id.memberRelation).text = "${member.relationship} | ${member.age} yrs | ${member.gender}"
-            
+            view.findViewById<TextView>(R.id.memberRelation).text =
+                "${member.relationship}  ·  ${member.age} yrs  ·  ${member.gender}"
+
             val infoContainer = view.findViewById<View>(R.id.healthInfoContainer)
             val expandIcon = view.findViewById<ImageView>(R.id.expandIcon)
-            
-            // Note: Chronic conditions are hidden as per privacy requirement, showing basic info
-            view.findViewById<TextView>(R.id.bloodGroup).text = "Blood Group: ${member.bloodGroup}"
+
+            view.findViewById<TextView>(R.id.bloodGroup).text = member.bloodGroup
             view.findViewById<TextView>(R.id.chronicConditions).visibility = View.GONE
-            view.findViewById<TextView>(R.id.allergies).text = "Aadhaar: XXXX-XXXX-3210"
+            view.findViewById<TextView>(R.id.allergies).text = "XXXX-XXXX-3210"
 
             view.setOnClickListener {
                 if (infoContainer.visibility == View.VISIBLE) {
@@ -81,6 +88,52 @@ class ProfileFragment : Fragment() {
             }
             binding.membersContainerProfile.addView(view)
         }
+    }
+
+    private fun showEditProfileDialog() {
+        val family = DummyData.dummyFamily
+        val dialog = BottomSheetDialog(requireContext())
+        val sheetView = LayoutInflater.from(requireContext())
+            .inflate(R.layout.dialog_edit_profile, null)
+
+        // Pre-fill current values
+        sheetView.findViewById<TextInputEditText>(R.id.editHeadName)
+            .setText(family.headName)
+        sheetView.findViewById<TextInputEditText>(R.id.editContactNo)
+            .setText(family.contactNo)
+        sheetView.findViewById<TextInputEditText>(R.id.editAddress)
+            .setText(family.address)
+
+        sheetView.findViewById<View>(R.id.cancelEditBtn).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        sheetView.findViewById<View>(R.id.saveEditBtn).setOnClickListener {
+            val newName = sheetView.findViewById<TextInputEditText>(R.id.editHeadName)
+                .text?.toString()?.trim() ?: ""
+            val newContact = sheetView.findViewById<TextInputEditText>(R.id.editContactNo)
+                .text?.toString()?.trim() ?: ""
+
+            if (newName.isEmpty()) {
+                sheetView.findViewById<TextInputEditText>(R.id.editHeadName).error = "Name is required"
+                return@setOnClickListener
+            }
+
+            // Update display in profile header
+            if (newName.isNotEmpty()) {
+                binding.headNameProfile.text = newName
+            }
+
+            Toast.makeText(
+                requireContext(),
+                "Profile updated successfully!",
+                Toast.LENGTH_SHORT
+            ).show()
+            dialog.dismiss()
+        }
+
+        dialog.setContentView(sheetView)
+        dialog.show()
     }
 
     override fun onDestroyView() {

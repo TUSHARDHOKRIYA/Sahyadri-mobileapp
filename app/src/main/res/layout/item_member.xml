@@ -1,33 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/CardView.MedFoundation"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="4dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="1dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/grey_200"
+    app:cardBackgroundColor="@color/surface">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingHorizontal="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp">
 
+        <!-- Member row: avatar circle + name + expand icon -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-            <ImageView
-                android:id="@+id/memberIcon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@android:drawable/ic_menu_myplaces"
-                app:tint="@color/primary" />
+            <!-- Avatar initials circle -->
+            <FrameLayout
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="@color/primary_light">
+
+                <ImageView
+                    android:id="@+id/memberIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@android:drawable/ic_menu_myplaces"
+                    android:tint="@color/primary" />
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_weight="1"
+                android:layout_marginStart="14dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -36,60 +54,113 @@
                     android:layout_height="wrap_content"
                     android:text="Rajesh Sharma"
                     android:textColor="@color/on_surface"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/memberRelation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Self | 45 | Male"
-                    android:textColor="@color/grey_400"
-                    android:textSize="14sp" />
+                    android:layout_marginTop="2dp"
+                    android:text="Self  ·  45 yrs  ·  Male"
+                    android:textColor="@color/on_surface_dim"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <ImageView
                 android:id="@+id/expandIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_gravity="center_vertical"
-                android:src="@android:drawable/arrow_down_float" />
+                android:src="@android:drawable/arrow_down_float"
+                android:tint="@color/grey_400" />
         </LinearLayout>
 
+        <!-- Expandable health info -->
         <LinearLayout
             android:id="@+id/healthInfoContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:orientation="vertical"
             android:visibility="gone">
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginBottom="12dp"
                 android:background="@color/grey_200" />
 
-            <TextView
-                android:id="@+id/bloodGroup"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Blood Group: A+" />
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BLOOD GROUP"
+                        android:textColor="@color/on_surface_dim"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.08" />
+                    <TextView
+                        android:id="@+id/bloodGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="A+"
+                        android:textColor="@color/on_surface"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CONDITIONS"
+                        android:textColor="@color/on_surface_dim"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.08" />
+                    <TextView
+                        android:id="@+id/chronicConditions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Diabetes"
+                        android:textColor="@color/on_surface"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/chronicConditions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Chronic Conditions: Diabetes" />
+                android:layout_marginTop="10sp"
+                android:text="AADHAAR"
+                android:textColor="@color/on_surface_dim"
+                android:textSize="10sp"
+                android:letterSpacing="0.08" />
 
             <TextView
                 android:id="@+id/allergies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Allergies: None" />
-
+                android:layout_marginTop="2dp"
+                android:text="XXXX-XXXX-3210"
+                android:textColor="@color/on_surface"
+                android:textSize="14sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>

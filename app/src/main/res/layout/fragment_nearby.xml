@@ -5,23 +5,57 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
+    <!-- Header banner -->
+    <LinearLayout
+        android:id="@+id/nearbyHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="0dp"
         app:layout_constraintTop_toTopOf="parent">
-        <com.google.android.material.tabs.TabItem android:text="Map View" />
-        <com.google.android.material.tabs.TabItem android:text="List View" />
-    </com.google.android.material.tabs.TabLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Find Nearby"
+            android:textColor="@color/on_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="12dp"
+            android:text="Hospitals, pharmacies &amp; labs near you"
+            android:textColor="@color/on_primary"
+            android:textSize="12sp"
+            android:alpha="0.80" />
+
+        <!-- Tabs integrated in header -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabTextColor="#AAFFFFFF"
+            app:tabSelectedTextColor="@color/on_primary"
+            app:tabIndicatorColor="@color/on_primary"
+            app:tabBackground="@android:color/transparent" />
+    </LinearLayout>
+
+    <!-- Map container -->
     <FrameLayout
         android:id="@+id/mapContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tabLayout">
+        app:layout_constraintTop_toBottomOf="@id/nearbyHeader"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <!-- Map Fragment will be here -->
         <fragment
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -29,12 +63,16 @@
             android:layout_height="match_parent" />
     </FrameLayout>
 
+    <!-- List view (hidden by default) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/nearbyRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+        android:clipToPadding="false"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="8dp"
+        app:layout_constraintTop_toBottomOf="@id/nearbyHeader"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

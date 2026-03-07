@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.medfoundation.databinding.ItemTransactionBinding
 import com.medfoundation.model.Transaction
+import java.util.Locale
 
 class HistoryAdapter(private val transactions: List<Transaction>) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
@@ -19,15 +20,17 @@ class HistoryAdapter(private val transactions: List<Transaction>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val transaction = transactions[position]
+        
+        holder.binding.transactionType.text = transaction.type.uppercase(Locale.getDefault())
         holder.binding.shopName.text = transaction.medicalShopName
         holder.binding.date.text = transaction.date
-        holder.binding.amount.text = "₹${transaction.paidAmount}"
+        holder.binding.amount.text = "₹${String.format("%.2f", transaction.paidAmount)}"
         holder.binding.patientName.text = "For: ${transaction.patientName}"
         holder.binding.cardIdText.text = "Card ID: ${transaction.cardId}"
 
         // Set detailed amounts
         holder.binding.totalAmountDetail.text = "₹${String.format("%.2f", transaction.totalAmount)}"
-        holder.binding.discountAmountDetail.text = "-₹${String.format("%.2f", transaction.discountAmount)}"
+        holder.binding.discountAmountDetail.text = "-₹${String.format("%.2f", transaction.discountAmount)} (${transaction.discountPercent}%)"
         holder.binding.paidAmountDetail.text = "₹${String.format("%.2f", transaction.paidAmount)}"
 
         holder.itemView.setOnClickListener {

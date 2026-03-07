@@ -13,243 +13,665 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/greetingText"
-                android:layout_width="wrap_content"
+            <!-- ═══ HEADER BANNER ═══ -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hello, Rajesh 👋"
-                android:textColor="@color/on_background"
-                android:textSize="26sp"
-                android:textStyle="bold" />
+                android:background="@color/primary"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="24dp"
+                android:gravity="center_vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Your health is our priority."
-                android:alpha="0.6"
-                android:textSize="14sp" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-            <!-- Interactive Blue Card -->
+                    <TextView
+                        android:id="@+id/greetingText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hello, Rajesh 👋"
+                        android:textColor="@color/on_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Sahyadri Foundation Member"
+                        android:textColor="@color/on_primary"
+                        android:textSize="12sp"
+                        android:alpha="0.80" />
+                </LinearLayout>
+
+                <!-- Notification bell placeholder -->
+                <ImageView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:src="@android:drawable/ic_popup_reminder"
+                    android:tint="@color/on_primary"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:alpha="0.80"
+                    android:contentDescription="Notifications" />
+            </LinearLayout>
+
+            <!-- ═══ SMART CARD PREVIEW (tap to expand) ═══ -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/smartCardPreviewBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="-8dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
-                app:cardBackgroundColor="@color/primary"
-                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="@color/surface"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="6dp"
                 app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    <!-- Left: teal icon circle -->
+                    <FrameLayout
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@color/primary_light">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:src="@android:drawable/ic_menu_gallery"
+                            android:tint="@color/primary" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="14dp"
+                        android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/cardIdText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="MEDF-2025-00142"
-                            android:textColor="@color/on_primary"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_alignParentEnd="true"
-                            android:src="@android:drawable/ic_menu_gallery"
-                            app:tint="@color/on_primary" />
-                    </RelativeLayout>
-
-                    <TextView
-                        android:id="@+id/validityText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="FY 2025-26 | Valid till 31 Mar 2026"
-                        android:textColor="@color/on_primary"
-                        android:alpha="0.9" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
-                        <com.google.android.material.chip.Chip
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ACTIVE"
-                            android:textColor="@color/secondary"
-                            app:chipBackgroundColor="@color/on_secondary"
-                            app:chipMinTouchTargetSize="0dp"
-                            android:textStyle="bold" />
+                            android:textColor="@color/on_surface"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.02" />
 
                         <TextView
+                            android:id="@+id/validityText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
-                            android:text="Tap to view Card"
-                            android:textColor="@color/on_primary"
+                            android:text="Valid till 31 Mar 2026"
+                            android:textColor="@color/on_surface_dim"
                             android:textSize="12sp"
-                            android:alpha="0.7" />
+                            android:layout_marginTop="2dp" />
                     </LinearLayout>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ACTIVE"
+                        android:textColor="@color/secondary"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:chipBackgroundColor="@color/secondary_light"
+                        app:chipMinTouchTargetSize="0dp"
+                        app:chipStrokeWidth="0dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Big Savings Card -->
+            <!-- ═══ TOTAL SAVINGS CARD ═══ -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="14dp"
                 app:cardBackgroundColor="@color/secondary"
-                app:cardCornerRadius="16dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="0dp"
                 app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="24dp"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="YOU HAVE SAVED"
-                        android:textColor="@color/on_secondary"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:letterSpacing="0.2" />
-
-                    <TextView
-                        android:id="@+id/totalSavedAmount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="₹ 4,250.00"
-                        android:textColor="@color/on_secondary"
-                        android:textSize="42sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="4dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="on medical expenses with Sahyadri Card"
-                        android:textColor="@color/on_secondary"
-                        android:textSize="12sp"
-                        android:alpha="0.8"
-                        android:layout_marginTop="4dp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Promotion / Engagement Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardBackgroundColor="#FFF8E1"
-                app:cardCornerRadius="12dp"
-                app:strokeWidth="0.5dp"
-                app:strokeColor="@color/accent">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp"
                     android:orientation="horizontal"
+                    android:padding="18dp"
                     android:gravity="center_vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="💡" android:textSize="24sp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="Did you know? Regular checkups can prevent 80% of critical health issues."
-                        android:textSize="12sp"
-                        android:textColor="@color/on_background" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Nearest Medical Center"
-                android:textColor="@color/on_background"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/grey_200">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-                            <TextView android:id="@+id/nearestMedicalName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="MedPlus Pharmacy" android:textStyle="bold" android:textSize="16sp" android:textColor="@color/on_surface"/>
-                            <TextView android:id="@+id/nearestMedicalDist" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Camp Road, Pune | 0.8 km" android:textSize="12sp" android:alpha="0.6"/>
-                        </LinearLayout>
-                        <Button
-                            android:id="@+id/btnGetDirections"
-                            style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Map"
-                            android:textColor="@color/primary"/>
+                            android:text="TOTAL SAVINGS"
+                            android:textColor="@color/on_secondary"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.10"
+                            android:alpha="0.85" />
+
+                        <TextView
+                            android:id="@+id/totalSavedAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="₹ 4,250.00"
+                            android:textColor="@color/on_secondary"
+                            android:textSize="26sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="saved with MedFoundation card"
+                            android:textColor="@color/on_secondary"
+                            android:textSize="12sp"
+                            android:alpha="0.75" />
                     </LinearLayout>
 
-                    <Button
-                        android:id="@+id/btnUseCurrentLocation"
-                        style="@style/Widget.Material3.Button.TextButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Use Current Location to find nearest"
-                        android:textSize="12sp"
-                        app:icon="@android:drawable/ic_menu_mylocation" />
+                    <TextView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:text="💰"
+                        android:textSize="28sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
+            <!-- ═══ BENEFITS SECTION HEADER ═══ -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="22dp"
+                android:text="Your Benefits"
+                android:textColor="@color/on_background"
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Recent Transactions"
-                android:textColor="@color/on_background"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="2dp"
+                android:text="Tap to find partner locations near you"
+                android:textColor="@color/on_surface_dim"
+                android:textSize="12sp" />
 
-            <LinearLayout
-                android:id="@+id/recentTransactionsContainer"
+            <!-- Benefit 1: Medicines -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="12dp" />
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="1dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/grey_200"
+                app:cardBackgroundColor="@color/surface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <FrameLayout
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:background="@color/card_teal_bg">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="💊"
+                            android:textSize="22sp" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="14dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Medicines"
+                            android:textColor="@color/on_surface"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="25% discount at partner pharmacies"
+                            android:textColor="@color/on_surface_dim"
+                            android:textSize="12sp"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFindMedical"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="Find"
+                        android:textSize="12sp"
+                        app:strokeColor="@color/primary"
+                        app:cornerRadius="8dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Benefit 2: Hospitalization IPD -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="1dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/grey_200"
+                app:cardBackgroundColor="@color/surface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <FrameLayout
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:background="@color/card_green_bg">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="🏥"
+                            android:textSize="22sp" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="14dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hospitalization (IPD)"
+                            android:textColor="@color/on_surface"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20% off on IPD charges"
+                            android:textColor="@color/on_surface_dim"
+                            android:textSize="12sp"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFindHospital"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="Find"
+                        android:textSize="12sp"
+                        app:strokeColor="@color/primary"
+                        app:cornerRadius="8dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Benefit 3: Full Body Checkup -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="1dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/grey_200"
+                app:cardBackgroundColor="@color/surface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <FrameLayout
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:background="@color/card_amber_bg">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="🔬"
+                            android:textSize="22sp" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="14dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Full Body Checkup"
+                            android:textColor="@color/on_surface"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="₹4500"
+                                android:textSize="12sp"
+                                android:textColor="@color/grey_400"
+                                android:foreground="@drawable/strikethrough" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:text="@ ₹2200 only"
+                                android:textSize="12sp"
+                                android:textColor="@color/secondary"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFindLab"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="Find"
+                        android:textSize="12sp"
+                        app:strokeColor="@color/primary"
+                        app:cornerRadius="8dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Benefit 4: Mega Health Package -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="1dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/grey_200"
+                app:cardBackgroundColor="@color/surface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <FrameLayout
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:background="@color/card_teal_bg">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="🧪"
+                            android:textSize="22sp" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="14dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mega Health Package"
+                            android:textColor="@color/on_surface"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lipid · Vit B12 · Kidney · Thyroid · CBC"
+                            android:textColor="@color/on_surface_dim"
+                            android:textSize="11sp"
+                            android:layout_marginTop="1dp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="3dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="₹4800"
+                                android:textSize="12sp"
+                                android:textColor="@color/grey_400"
+                                android:foreground="@drawable/strikethrough" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:text="@ ₹1999 only"
+                                android:textSize="12sp"
+                                android:textColor="@color/secondary"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFindLab2"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="Find"
+                        android:textSize="12sp"
+                        app:strokeColor="@color/primary"
+                        app:cornerRadius="8dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Benefit 5: Maternity -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="1dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/grey_200"
+                app:cardBackgroundColor="@color/surface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <FrameLayout
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:background="@color/card_red_bg">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="👶"
+                            android:textSize="22sp" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="14dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Maternity Benefits"
+                            android:textColor="@color/on_surface"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Normal: ₹10,000 · Cesarean: ₹20,000"
+                            android:textColor="@color/secondary"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFindHospital2"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="Find"
+                        android:textSize="12sp"
+                        app:strokeColor="@color/primary"
+                        app:cornerRadius="8dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Benefit 6: Blood Bank -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="1dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/grey_200"
+                app:cardBackgroundColor="@color/surface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <FrameLayout
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:background="@color/card_red_bg">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="🩸"
+                            android:textSize="22sp" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="14dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Blood Bank"
+                            android:textColor="@color/on_surface"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="30% discount on blood bags"
+                            android:textColor="@color/on_surface_dim"
+                            android:textSize="12sp"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFindBloodBank"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="Find"
+                        android:textSize="12sp"
+                        app:strokeColor="@color/primary"
+                        app:cornerRadius="8dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -259,17 +681,20 @@
         android:id="@+id/cardOverlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#CC000000"
+        android:background="#B01C2B36"
         android:visibility="gone"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="24dp"
-            app:cardCornerRadius="24dp">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="16dp">
 
             <include android:id="@+id/fullCardLayout" layout="@layout/fragment_smart_card" />
 

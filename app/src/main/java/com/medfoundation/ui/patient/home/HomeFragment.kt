@@ -1,5 +1,7 @@
 package com.medfoundation.ui.patient.home
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +10,8 @@ import android.view.animation.AnimationUtils
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.google.android.material.card.MaterialCardView
 import com.medfoundation.R
 import com.medfoundation.data.DummyData
 import com.medfoundation.databinding.FragmentHomeBinding
@@ -37,8 +39,7 @@ class HomeFragment : Fragment() {
         setupGreeting()
         setupSavings()
         setupSmartCardOverlay()
-        setupRecentTransactions()
-        setupLocationActions()
+        setupBenefitActions()
         
         // Add subtle entry animations
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in_up)
@@ -106,49 +107,45 @@ class HomeFragment : Fragment() {
         binding.cardOverlay.startAnimation(anim)
     }
 
-    private fun setupRecentTransactions() {
-        val transactions = DummyData.dummyTransactions.takeLast(3).reversed()
-        binding.recentTransactionsContainer.removeAllViews()
-
-        for (transaction in transactions) {
-            val card = LayoutInflater.from(requireContext())
-                .inflate(R.layout.item_transaction, binding.recentTransactionsContainer, false) as MaterialCardView
-            
-            card.findViewById<TextView>(R.id.shopName).text = transaction.medicalShopName
-            card.findViewById<TextView>(R.id.date).text = transaction.date
-            card.findViewById<TextView>(R.id.amount).text = "₹${String.format("%.2f", transaction.paidAmount)}"
-            card.findViewById<TextView>(R.id.patientName).text = "For: ${transaction.patientName}"
-            card.findViewById<TextView>(R.id.cardIdText).text = "Type: ${transaction.type}"
-
-            // Expansion details
-            val detailContainer = card.findViewById<View>(R.id.detailContainer)
-            card.findViewById<TextView>(R.id.totalAmountDetail).text = "₹${String.format("%.2f", transaction.totalAmount)}"
-            card.findViewById<TextView>(R.id.discountAmountDetail).text = "-₹${String.format("%.2f", transaction.discountAmount)} (${transaction.discountPercent}%)"
-            card.findViewById<TextView>(R.id.paidAmountDetail).text = "₹${String.format("%.2f", transaction.paidAmount)}"
-
-            card.setOnClickListener {
-                if (detailContainer.visibility == View.VISIBLE) {
-                    detailContainer.visibility = View.GONE
-                } else {
-                    detailContainer.visibility = View.VISIBLE
-                    detailContainer.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in))
-                }
-            }
-            
-            binding.recentTransactionsContainer.addView(card)
-        }
+    private fun setupBenefitActions() {
+        binding.btnFindMedical.setOnClickListener { showLocationList("Partner Medicals") }
+        binding.btnFindHospital.setOnClickListener { showLocationList("Partner Hospitals") }
+        binding.btnFindLab.setOnClickListener { showLocationList("Partner Labs") }
+        binding.btnFindLab2.setOnClickListener { showLocationList("Partner Labs") }
+        binding.btnFindHospital2.setOnClickListener { showLocationList("Maternity Centers") }
+        binding.btnFindBloodBank.setOnClickListener { showLocationList("Blood Banks") }
     }
 
-    private fun setupLocationActions() {
-        binding.btnUseCurrentLocation.setOnClickListener {
-            binding.nearestMedicalName.text = "Sahyadri Medical (Closest)"
-            binding.nearestMedicalDist.text = "Deccan, Pune | 0.4 km"
-            Toast.makeText(context, "Location updated!", Toast.LENGTH_SHORT).show()
-        }
+    private fun showLocationList(title: String) {
+        val locations = DummyData.dummyMedicals // Repurposing dummy data for simulation
+        val locationNames = locations.map { "${it.name}\n${it.address}" }.toTypedArray()
 
-        binding.btnGetDirections.setOnClickListener {
-            Toast.makeText(context, "Opening Google Maps Directions...", Toast.LENGTH_SHORT).show()
-        }
+        AlertDialog.Builder(requireContext())
+            .setTitle(title)
+            .setItems(locationNames) { _, which ->
+                val selected = locations[which]
+                showRouteDialog(selected.name, selected.latitude, selected.longitude)
+            }
+            .setPositiveButton("Close", null)
+            .show()
+    }
+
+    private fun showRouteDialog(name: String, lat: Double, lng: Double) {
+        AlertDialog.Builder(requireContext())
+            .setTitle(name)
+            .setMessage("Would you like to get directions to this location?")
+            .setPositiveButton("Get Route") { _, _ ->
+                val gmmIntentUri = Uri.parse("google.navigation:q=$lat,$lng")
+                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                mapIntent.setPackage("com.google.android.apps.maps")
+                if (mapIntent.resolveActivity(requireActivity().packageManager) != null) {
+                    startActivity(mapIntent)
+                } else {
+                    Toast.makeText(context, "Google Maps not found", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 
     override fun onDestroyView() {
